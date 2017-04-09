@@ -2,13 +2,8 @@
 import random
 import string
 import base64
-# s=original(& obfuscated)
-# p=compiled pattern
-# m=pattern match
-# b=base64
-# c=chunk
-# r=randomized
-# i=index
+import re
+
 # custom Base64 encoder
 def encode(s):
 	return base64.b64encode(s).translate(
