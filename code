@@ -1,0 +1,39 @@
+def encode(s):
+	return base64.b64encode(s).translate(
+		string.maketrans(
+			string.uppercase+string.lowercase+string.digits+"+/",
+			string.digits+string.uppercase+string.lowercase+"+/"
+		)
+	)
+
+def decode(s):
+	return base64.b64decode(s.translate(
+		string.maketrans(
+			string.digits+string.uppercase+string.lowercase+"+/",
+			string.uppercase+string.lowercase+string.digits+"+/"
+		)
+	))
+
+
+def chunk(s):
+	c=[]
+	i=0
+	while(i<len(s)):
+		j=random.choice(range(5,20))
+		c.append(s[i:i+j])
+		i+=j
+	return c
+
+def shuf(l):
+	r=l[:]
+	random.shuffle(r)
+	return r
+
+cypher=encode(data)
+chunks=chunk(cypher)
+scramble=shuf(chunks)
+map = { chunks.index(e):e for e in scramble }
+code=''
+for k,v in m.iteritems():
+	code='scramble['+str(scramble.index(v))+']+'
+
