@@ -24,18 +24,18 @@ def chunk(s):
 	return c
 
 # 1. load Javascript file
-with open('js') as f:
+with open('step1.js') as f:
 	s = f.read()
 # 2. save required spaces, remove unnecessary formatting
 s = s.replace('function ','function_').replace('var ','var_')
-s = re.sub("[\t\n]","",s)
-s = re.sub(r' ?([=+]) ?',r'\1',s)
+s = re.sub(r' ?([=+]) ?',r'\1',re.sub("[\t\n]","",s))
 # 3. randomize function and variable names
 fs=[]
-p = re.compile(r'function_([0-9a-zA-Z]+)\(')
+vs=[]
+p = re.compile(r'function_([0-9a-zA-Z]+)\(([^)]+)\)')
 for m in re.finditer(p,s):
 	fs.append(m.group(1))
-vs=[]
+	vs.append(m.group(2))
 p = re.compile(r'var_([0-9a-zA-Z]+)\=')
 for m in re.finditer(p,s):
 	vs.append(m.group(1))
@@ -77,8 +77,31 @@ print '''<html><head>
 <body><hl>boom boom</hl><script>'''
 print j1
 print j2
+# 9. load Javascript decoder file
+with open('step2.js') as f:
+	s = f.read()
+# 10. save required spaces, remove unnecessary formatting
+s = s.replace('function ','function_').replace('var ','var_')
+s = re.sub(r' ?([=+]) ?',r'\1',re.sub("[\t\n]","",s))
+# 11. randomize function and variable names
+fs=[]
+vs=[]
+p = re.compile(r'function_([0-9a-zA-Z]+)\(([^)]+)\)')
+for m in re.finditer(p,s):
+	fs.append(m.group(1))
+	vs.append(m.group(2))
+p = re.compile(r'var_([0-9a-zA-Z]+)\=')
+for m in re.finditer(p,s):
+	vs.append(m.group(1))
+for f in fs:
+	s = s.replace(f,''.join(random.choice(string.ascii_uppercase) for _ in range(6)))
+for v in vs:
+	s = s.replace(v,''.join(random.choice(string.ascii_uppercase) for _ in range(6)))
+print s.replace('_',' ')
+"""
 print '''k="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/=";
 function g(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,"");while(f<e.length){s=k.indexOf(e.charAt(f++));o=k.indexOf(e.charAt(f++));u=k.indexOf(e.charAt(f++));a=k.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}return t;}
 eval(g(z));
 </script>
-<h5>pop pop</h5></body></html>'''
+"""
+print '''<h5>pop pop</h5></body></html>'''
