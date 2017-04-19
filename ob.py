@@ -36,7 +36,7 @@ p = re.compile(r'function_([0-9a-zA-Z]+)\(([^)]+)\)')
 for m in re.finditer(p,s):
 	fs.append(m.group(1))
 	vs.append(m.group(2))
-p = re.compile(r'var_([0-9a-zA-Z]+)\=')
+p = re.compile(r'var_([0-9a-zA-Z]+)[;=]')
 for m in re.finditer(p,s):
 	vs.append(m.group(1))
 for f in fs:
@@ -90,7 +90,7 @@ p = re.compile(r'function_([0-9a-zA-Z]+)\(([^)]+)\)')
 for m in re.finditer(p,s):
 	fs.append(m.group(1))
 	vs.append(m.group(2))
-p = re.compile(r'var_([0-9a-zA-Z]+)\=')
+p = re.compile(r'var_([0-9a-zA-Z]+)[;=]')
 for m in re.finditer(p,s):
 	vs.append(m.group(1))
 for f in fs:
