@@ -8,13 +8,13 @@ function decode(input){
 	var char2;
 	var char3;
 	var char4;
-	var index=0;
+	var idx=0;
 	input=input.replace(/[^A-Za-z0-9+/=]/g,"");
-	while(index<input.length){
-		char1=key.indexOf(input.charAt(index++));
-		char2=key.indexOf(input.charAt(index++));
-		char3=key.indexOf(input.charAt(index++));
-		char4=key.indexOf(input.charAt(index++));
+	while(idx<input.length){
+		char1=key.indexOf(input.charAt(idx++));
+		char2=key.indexOf(input.charAt(idx++));
+		char3=key.indexOf(input.charAt(idx++));
+		char4=key.indexOf(input.charAt(idx++));
 		enc1=char1<<2|char2>>4;
 		enc2=(char2&15)<<4|char3>>2;
 		enc3=(char3&3)<<6|char4;
