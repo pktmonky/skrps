@@ -19,7 +19,7 @@ function decode(input){
 		enc2=(char2&15)<<4|char3>>2;
 		enc3=(char3&3)<<6|char4;
 		out=out+String.fromCharCode(enc1);
-		if(enc2!=64){out=outt+String.fromCharCode(enc2)}
+		if(enc2!=64){out=out+String.fromCharCode(enc2)}
 		if(enc3!=64){out=out+String.fromCharCode(enc3)}
 	}
 	return out;
